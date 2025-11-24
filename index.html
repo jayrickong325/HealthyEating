@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriLife - Complete Healthy Eating Guide</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --primary-dark: #1b5e20;
+            --secondary: #ff9800;
+            --light: #f5f5f5;
+            --dark: #333;
+            --gray: #757575;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e68900;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(46, 125, 50, 0.8), rgba(46, 125, 50, 0.8)), url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* Food Groups Section */
+        .food-groups {
+            background-color: var(--light);
+        }
+        
+        .food-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .food-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .food-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .food-content {
+            padding: 20px;
+        }
+        
+        /* Recipes Section */
+        .recipe-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .recipe-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .recipe-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .recipe-content {
+            padding: 20px;
+        }
+        
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Tips Section */
+        .tips-section {
+            background-color: var(--light);
+        }
+        
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tip-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .tip-card h3 {
+            display: flex;
+            align-items: center;
+        }
+        
+        .tip-card i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+        
+        /* BMI Calculator */
+        .calculator {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .normal {
+            background-color: #e8f5e9;
+            color: var(--primary);
+        }
+        
+        .underweight {
+            background-color: #fff3e0;
+            color: #ff9800;
+        }
+        
+        .overweight {
+            background-color: #ffebee;
+            color: #f44336;
+        }
+        
+        /* Meal Planner */
+        .meal-planner {
+            background-color: var(--light);
+        }
+        
+        .planner-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .planner-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .planner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .day-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .day-card h4 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .meal-option {
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .meal-option:hover {
+            background-color: #e8f5e9;
+        }
+        
+        /* Nutrition Chart */
+        .chart-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary-light);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #e0e0e0;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Progress Tracker */
+        .progress-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .progress-item {
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-leaf"></i>
+                    NutriLife
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#food-groups">Food Groups</a></li>
+                    <li><a href="#recipes">Recipes</a></li>
+                    <li><a href="#tips">Tips</a></li>
+                    <li><a href="#meal-planner">Meal Planner</a></li>
+                    <li><a href="#calculator">BMI Calculator</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Eat Well, Live Well</h1>
+            <p>Discover the power of healthy eating and transform your life with nutritious, delicious food choices. Start your journey to better health today!</p>
+            <a href="#benefits" class="btn">Get Started</a>
+            <a href="#meal-planner" class="btn btn-secondary">Plan Your Meals</a>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits">
+        <div class="container">
+            <h2 class="section-title">Benefits of Healthy Eating</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Heart Health</h3>
+                    <p>Reduce your risk of heart disease by choosing foods low in saturated fat and cholesterol. A diet rich in fruits, vegetables, and whole grains can lower blood pressure and improve cholesterol levels.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Mental Clarity</h3>
+                    <p>Nutrient-rich foods support brain function and can improve focus and memory. Omega-3 fatty acids, antioxidants, and vitamins are essential for cognitive health and may reduce the risk of neurodegenerative diseases.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <h3>Weight Management</h3>
+                    <p>Maintain a healthy weight with balanced nutrition and portion control. High-fiber foods keep you fuller longer, while lean proteins help maintain muscle mass during weight loss.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Strong Immunity</h3>
+                    <p>Boost your immune system with vitamins and minerals from fruits and vegetables. Vitamin C, zinc, and antioxidants help your body fight off infections and recover more quickly from illness.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-energy"></i>
+                    </div>
+                    <h3>Increased Energy</h3>
+                    <p>Complex carbohydrates and balanced meals provide sustained energy throughout the day, reducing energy crashes and improving productivity.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3>Better Mood</h3>
+                    <p>Nutrients like omega-3s, vitamins, and minerals can positively impact brain chemistry, potentially reducing symptoms of depression and anxiety.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Food Groups Section -->
+    <section class="food-groups" id="food-groups">
+        <div class="container">
+            <h2 class="section-title">Essential Food Groups</h2>
+            <div class="food-cards">
+                <div class="food-card">
+                    <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="food-content">
+                        <h3>Fruits & Vegetables</h3>
+                        <p>Rich in vitamins, minerals, and fiber. Aim for at least 5 servings per day for optimal health. Different colors provide different nutrients, so eat a rainbow!</p>
+                        <ul>
+                            <li>Leafy greens (spinach, kale)</li>
+                            <li>Berries (blueberries, strawberries)</li>
+                            <li>Citrus fruits (oranges, lemons)</li>
+                            <li>Cruciferous vegetables (broccoli, cauliflower)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="food-content">
+                        <h3>Whole Grains</h3>
+                        <p>Provide sustained energy and are packed with fiber, B vitamins, and minerals. Choose whole grains over refined grains for maximum nutritional benefit.</p>
+                        <ul>
+                            <li>Oats and oatmeal</li>
+                            <li>Brown rice and quinoa</li>
+                            <li>Whole wheat bread and pasta</li>
+                            <li>Barley and bulgur</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="food-content">
+                        <h3>Lean Proteins</h3>
+                        <p>Essential for muscle repair and growth. Include plant-based options like beans and lentils. Protein helps you feel full and supports a healthy metabolism.</p>
+                        <ul>
+                            <li>Chicken and turkey breast</li>
+                            <li>Fish (salmon, tuna)</li>
+                            <li>Legumes (beans, lentils)</li>
+                            <li>Tofu and tempeh</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="food-content">
+                        <h3>Healthy Fats</h3>
+                        <p>Essential for brain health, hormone production, and absorbing fat-soluble vitamins. Focus on unsaturated fats and limit saturated and trans fats.</p>
+                        <ul>
+                            <li>Avocados</li>
+                            <li>Nuts and seeds</li>
+                            <li>Olive oil</li>
+                            <li>Fatty fish</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1565699894163-c495cd147d0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="food-content">
+                        <h3>Dairy & Alternatives</h3>
+                        <p>Important sources of calcium, vitamin D, and protein. Choose low-fat options or fortified plant-based alternatives.</p>
+                        <ul>
+                            <li>Greek yogurt</li>
+                            <li>Milk and cheese</li>
+                            <li>Fortified plant milks</li>
+                            <li>Cottage cheese</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition Chart Section -->
+    <section id="nutrition-chart">
+        <div class="container">
+            <h2 class="section-title">Daily Nutrition Guide</h2>
+            <div class="chart-container">
+                <canvas id="nutritionChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes Section -->
+    <section id="recipes">
+        <div class="container">
+            <h2 class="section-title">Healthy Recipes</h2>
+            <div class="recipe-cards">
+                <div class="recipe-card">
+                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="recipe-content">
+                        <h3>Quinoa Power Bowl</h3>
+                        <p>A nutrient-packed bowl with quinoa, roasted vegetables, avocado, and a lemon-tahini dressing. Perfect for lunch or a light dinner.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 25 mins</span>
+                            <span><i class="fas fa-fire"></i> 420 cal</span>
+                        </div>
+                        <button class="btn view-recipe" data-recipe="quinoa">View Recipe</button>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="recipe-content">
+                        <h3>Mediterranean Salad</h3>
+                        <p>Fresh greens with cherry tomatoes, cucumber, olives, feta cheese, and a light vinaigrette. A refreshing and healthy side dish.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 15 mins</span>
+                            <span><i class="fas fa-fire"></i> 280 cal</span>
+                        </div>
+                        <button class="btn view-recipe" data-recipe="mediterranean">View Recipe</button>
+                    </div>
+                </div>
+                <div class="recipe-card">
+                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="recipe-content">
+                        <h3>Veggie Stir Fry</h3>
+                        <p>Colorful vegetables stir-fried with tofu in a light ginger-soy sauce, served with brown rice. Quick, easy, and packed with nutrients.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 20 mins</span>
+                            <span><i class="fas fa-fire"></i> 350 cal</span>
+                        </div>
+                        <button class="btn view-recipe" data-recipe="stirfry">View Recipe</button>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#" class="btn btn-secondary">View All Recipes</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meal Planner Section -->
+    <section class="meal-planner" id="meal-planner">
+        <div class="container">
+            <h2 class="section-title">Weekly Meal Planner</h2>
+            <div class="planner-container">
+                <div class="planner-header">
+                    <h3>This Week's Plan</h3>
+                    <button class="btn" id="generate-plan">Generate New Plan</button>
+                </div>
+                <div class="planner-grid">
+                    <div class="day-card">
+                        <h4>Monday</h4>
+                        <div class="meal-option" data-meal="breakfast">Oatmeal with berries</div>
+                        <div class="meal-option" data-meal="lunch">Quinoa salad</div>
+                        <div class="meal-option" data-meal="dinner">Baked salmon</div>
+                    </div>
+                    <div class="day-card">
+                        <h4>Tuesday</h4>
+                        <div class="meal-option" data-meal="breakfast">Greek yogurt</div>
+                        <div class="meal-option" data-meal="lunch">Chicken wrap</div>
+                        <div class="meal-option" data-meal="dinner">Vegetable stir-fry</div>
+                    </div>
+                    <div class="day-card">
+                        <h4>Wednesday</h4>
+                        <div class="meal-option" data-meal="breakfast">Smoothie bowl</div>
+                        <div class="meal-option" data-meal="lunch">Lentil soup</div>
+                        <div class="meal-option" data-meal="dinner">Turkey meatballs</div>
+                    </div>
+                    <div class="day-card">
+                        <h4>Thursday</h4>
+                        <div class="meal-option" data-meal="breakfast">Avocado toast</div>
+                        <div class="meal-option" data-meal="lunch">Mediterranean bowl</div>
+                        <div class="meal-option" data-meal="dinner">Chicken curry</div>
+                    </div>
+                    <div class="day-card">
+                        <h4>Friday</h4>
+                        <div class="meal-option" data-meal="breakfast">Chia pudding</div>
+                        <div class="meal-option" data-meal="lunch">Tuna salad</div>
+                        <div class="meal-option" data-meal="dinner">Vegetable pizza</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section" id="tips">
+        <div class="container">
+            <h2 class="section-title">Healthy Eating Tips</h2>
+            <div class="tips-container">
+                <div class="tip-card">
+                    <h3><i class="fas fa-apple-alt"></i> Eat More Whole Foods</h3>
+                    <p>Focus on consuming foods in their most natural state. Whole fruits, vegetables, grains, and lean proteins provide more nutrients and fewer additives than processed foods.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-tint"></i> Stay Hydrated</h3>
+                    <p>Water is essential for digestion, nutrient absorption, and overall health. Aim for 8 glasses per day, more if you're active. Herbal teas and infused water are great options.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-utensils"></i> Practice Mindful Eating</h3>
+                    <p>Pay attention to what you're eating, savor each bite, and listen to your body's hunger and fullness cues. Avoid distractions like TV or phones during meals.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-balance-scale"></i> Watch Portion Sizes</h3>
+                    <p>Even healthy foods can contribute to weight gain if eaten in excessive amounts. Use visual cues to estimate proper portions - a serving of protein should be the size of your palm.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-shopping-basket"></i> Plan Your Meals</h3>
+                    <p>Meal planning helps you make healthier choices, reduces food waste, and saves time and money. Dedicate one day a week to planning and prepping meals.</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-cookie"></i> Limit Processed Foods</h3>
+                    <p>Processed foods are often high in sodium, sugar, and unhealthy fats. Opt for homemade alternatives when possible and read labels carefully.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Tracker -->
+    <section id="progress-tracker">
+        <div class="container">
+            <h2 class="section-title">Healthy Habits Tracker</h2>
+            <div class="progress-container">
+                <div class="progress-item">
+                    <p>Water Intake (8 glasses/day)</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="water-progress"></div>
+                    </div>
+                    <button class="btn" onclick="updateProgress('water')">Add Glass</button>
+                </div>
+                <div class="progress-item">
+                    <p>Fruit & Vegetable Servings (5/day)</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="produce-progress"></div>
+                    </div>
+                    <button class="btn" onclick="updateProgress('produce')">Add Serving</button>
+                </div>
+                <div class="progress-item">
+                    <p>Physical Activity (30 mins/day)</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="activity-progress"></div>
+                    </div>
+                    <button class="btn" onclick="updateProgress('activity')">Add 10 mins</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BMI Calculator -->
+    <section id="calculator">
+        <div class="container">
+            <h2 class="section-title">BMI Calculator</h2>
+            <div class="calculator">
+                <div class="form-group">
+                    <label for="height">Height (cm)</label>
+                    <input type="number" id="height" placeholder="Enter your height">
+                </div>
+                <div class="form-group">
+                    <label for="weight">Weight (kg)</label>
+                    <input type="number" id="weight" placeholder="Enter your weight">
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" placeholder="Enter your age">
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <button class="btn" id="calculate-btn">Calculate BMI</button>
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NutriLife</h3>
+                    <p>Your guide to healthy eating and balanced nutrition for a better lifestyle.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="#food-groups">Food Groups</a></li>
+                        <li><a href="#recipes">Recipes</a></li>
+                        <li><a href="#tips">Tips</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Nutrition Guides</a></li>
+                        <li><a href="#">Meal Plans</a></li>
+                        <li><a href="#">Healthy Shopping List</a></li>
+                        <li><a href="#">Cooking Techniques</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get healthy recipes and nutrition tips delivered to your inbox.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your email address" style="margin-top: 10px;">
+                        </div>
+                        <button class="btn" type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 NutriLife. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Recipe Modal -->
+    <div class="modal" id="recipe-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Recipe Details</h2>
+            <div id="modal-content">
+                <!-- Recipe content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // BMI Calculator
+        document.getElementById('calculate-btn').addEventListener('click', function() {
+            const height = parseFloat(document.getElementById('height').value) / 100; // Convert cm to m
+            const weight = parseFloat(document.getElementById('weight').value);
+            const age = parseInt(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            
+            if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+                alert('Please enter valid height and weight values.');
+                return;
+            }
+            
+            const bmi = weight / (height * height);
+            const result = document.getElementById('result');
+            
+            let category = '';
+            let colorClass = '';
+            
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                colorClass = 'underweight';
+            } else if (bmi >= 18.5 && bmi < 25) {
+                category = 'Normal weight';
+                colorClass = 'normal';
+            } else if (bmi >= 25 && bmi < 30) {
+                category = 'Overweight';
+                colorClass = 'overweight';
+            } else {
+                category = 'Obese';
+                colorClass = 'overweight';
+            }
+            
+            let advice = '';
+            if (category === 'Underweight') {
+                advice = 'Consider increasing your calorie intake with nutrient-dense foods.';
+            } else if (category === 'Normal weight') {
+                advice = 'Great job! Maintain your healthy weight with balanced nutrition and regular exercise.';
+            } else {
+                advice = 'Consider consulting a healthcare provider for a personalized weight management plan.';
+            }
+            
+            result.innerHTML = `
+                <p>Your BMI: <strong>${bmi.toFixed(1)}</strong></p>
+                <p>Category: <strong>${category}</strong></p>
+                <p>${advice}</p>
+            `;
+            result.className = `result ${colorClass}`;
+            result.style.display = 'block';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+
+        // Progress Tracker
+        let waterCount = 0;
+        let produceCount = 0;
+        let activityCount = 0;
+
+        function updateProgress(type) {
+            const waterProgress = document.getElementById('water-progress');
+            const produceProgress = document.getElementById('produce-progress');
+            const activityProgress = document.getElementById('activity-progress');
+            
+            if (type === 'water') {
+                waterCount = Math.min(waterCount + 1, 8);
+                waterProgress.style.width = `${(waterCount / 8) * 100}%`;
+            } else if (type === 'produce') {
+                produceCount = Math.min(produceCount + 1, 5);
+                produceProgress.style.width = `${(produceCount / 5) * 100}%`;
+            } else if (type === 'activity') {
+                activityCount = Math.min(activityCount + 10, 30);
+                activityProgress.style.width = `${(activityCount / 30) * 100}%`;
+            }
+        }
+
+        // Recipe Modal
+        const modal = document.getElementById('recipe-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const closeModal = document.querySelector('.close-modal');
+
+        const recipes = {
+            quinoa: {
+                title: "Quinoa Power Bowl",
+                ingredients: [
+                    "1 cup quinoa, rinsed",
+                    "2 cups vegetable broth",
+                    "1 sweet potato, cubed",
+                    "1 red bell pepper, sliced",
+                    "1 zucchini, sliced",
+                    "1 avocado, sliced",
+                    "2 tbsp olive oil",
+                    "1 lemon, juiced",
+                    "2 tbsp tahini",
+                    "Salt and pepper to taste"
+                ],
+                instructions: [
+                    "Preheat oven to 400°F (200°C).",
+                    "Toss sweet potato, bell pepper, and zucchini with 1 tbsp olive oil, salt, and pepper.",
+                    "Roast vegetables for 20-25 minutes until tender.",
+                    "Meanwhile, cook quinoa in vegetable broth according to package instructions.",
+                    "Whisk together lemon juice, tahini, remaining olive oil, and 2 tbsp water to make dressing.",
+                    "Assemble bowls with quinoa, roasted vegetables, and avocado. Drizzle with dressing."
+                ],
+                nutrition: "Calories: 420 | Protein: 12g | Carbs: 58g | Fat: 16g"
+            },
+            mediterranean: {
+                title: "Mediterranean Salad",
+                ingredients: [
+                    "4 cups mixed greens",
+                    "1 cup cherry tomatoes, halved",
+                    "1 cucumber, sliced",
+                    "1/2 red onion, thinly sliced",
+                    "1/2 cup kalamata olives",
+                    "1/4 cup feta cheese, crumbled",
+                    "2 tbsp olive oil",
+                    "1 tbsp red wine vinegar",
+                    "1 tsp dried oregano",
+                    "Salt and pepper to taste"
+                ],
+                instructions: [
+                    "In a large bowl, combine mixed greens, tomatoes, cucumber, red onion, and olives.",
+                    "In a small bowl, whisk together olive oil, red wine vinegar, oregano, salt, and pepper.",
+                    "Pour dressing over salad and toss to combine.",
+                    "Top with crumbled feta cheese before serving."
+                ],
+                nutrition: "Calories: 280 | Protein: 6g | Carbs: 18g | Fat: 22g"
+            },
+            stirfry: {
+                title: "Veggie Stir Fry",
+                ingredients: [
+                    "2 cups brown rice, cooked",
+                    "1 block firm tofu, cubed",
+                    "2 cups mixed vegetables (broccoli, bell peppers, carrots, snap peas)",
+                    "3 cloves garlic, minced",
+                    "1 tbsp ginger, grated",
+                    "3 tbsp soy sauce",
+                    "1 tbsp sesame oil",
+                    "1 tbsp olive oil",
+                    "1 tsp honey or maple syrup",
+                    "Green onions for garnish"
+                ],
+                instructions: [
+                    "Press tofu to remove excess water, then cube.",
+                    "Heat olive oil in a large pan or wok over medium-high heat.",
+                    "Add tofu and cook until golden brown on all sides. Remove from pan.",
+                    "Add a bit more oil if needed, then stir-fry vegetables until crisp-tender.",
+                    "Add garlic and ginger, cook for 1 minute until fragrant.",
+                    "Return tofu to the pan, add soy sauce, sesame oil, and honey. Stir to combine.",
+                    "Serve over brown rice and garnish with green onions."
+                ],
+                nutrition: "Calories: 350 | Protein: 15g | Carbs: 45g | Fat: 12g"
+            }
+        };
+
+        document.querySelectorAll('.view-recipe').forEach(button => {
+            button.addEventListener('click', function() {
+                const recipeKey = this.getAttribute('data-recipe');
+                const recipe = recipes[recipeKey];
+                
+                modalTitle.textContent = recipe.title;
+                modalContent.innerHTML = `
+                    <h3>Ingredients</h3>
+                    <ul>
+                        ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                    </ul>
+                    <h3>Instructions</h3>
+                    <ol>
+                        ${recipe.instructions.map(step => `<li>${step}</li>`).join('')}
+                    </ol>
+                    <h3>Nutrition Information</h3>
+                    <p>${recipe.nutrition}</p>
+                `;
+                
+                modal.style.display = 'flex';
+            });
+        });
+
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Meal Planner
+        document.getElementById('generate-plan').addEventListener('click', function() {
+            const breakfastOptions = [
+                "Oatmeal with berries",
+                "Greek yogurt with honey and nuts",
+                "Smoothie bowl",
+                "Avocado toast",
+                "Chia pudding",
+                "Scrambled eggs with vegetables"
+            ];
+            
+            const lunchOptions = [
+                "Quinoa salad",
+                "Chicken wrap",
+                "Lentil soup",
+                "Mediterranean bowl",
+                "Tuna salad",
+                "Vegetable stir-fry"
+            ];
+            
+            const dinnerOptions = [
+                "Baked salmon with roasted vegetables",
+                "Vegetable stir-fry with tofu",
+                "Turkey meatballs with zucchini noodles",
+                "Chicken curry with brown rice",
+                "Vegetable pizza on whole wheat crust",
+                "Black bean burgers with sweet potato fries"
+            ];
+            
+            document.querySelectorAll('.meal-option').forEach(option => {
+                const mealType = option.getAttribute('data-meal');
+                let optionsArray;
+                
+                if (mealType === 'breakfast') {
+                    optionsArray = breakfastOptions;
+                } else if (mealType === 'lunch') {
+                    optionsArray = lunchOptions;
+                } else {
+                    optionsArray = dinnerOptions;
+                }
+                
+                const randomIndex = Math.floor(Math.random() * optionsArray.length);
+                option.textContent = optionsArray[randomIndex];
+            });
+        });
+
+        // Nutrition Chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('nutritionChart').getContext('2d');
+            const nutritionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Carbohydrates', 'Protein', 'Fats', 'Fiber', 'Vitamins & Minerals'],
+                    datasets: [{
+                        data: [45, 25, 20, 5, 5],
+                        backgroundColor: [
+                            '#4caf50',
+                            '#2196f3',
+                            '#ff9800',
+                            '#9c27b0',
+                            '#ffeb3b'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Recommended Daily Nutrition Distribution'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
