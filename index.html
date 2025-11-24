@@ -139,9 +139,10 @@
             color: var(--dark);
             font-weight: 500;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
         
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: var(--primary);
         }
         
@@ -149,6 +150,15 @@
             display: none;
             font-size: 24px;
             cursor: pointer;
+        }
+        
+        /* Page Styles */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
         }
         
         /* Hero Section */
@@ -399,6 +409,111 @@
             margin: 0 auto;
         }
         
+        /* Progress Tracker */
+        .progress-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .progress-item {
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        /* About Page */
+        .about-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-member {
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--primary);
+        }
+        
+        /* Contact Page */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .contact-info {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-right: 15px;
+        }
+        
+        .contact-form {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
         /* Footer */
         footer {
             background-color: var(--primary-dark);
@@ -431,6 +546,7 @@
             color: #e0e0e0;
             text-decoration: none;
             transition: color 0.3s ease;
+            cursor: pointer;
         }
         
         .footer-links a:hover {
@@ -498,34 +614,6 @@
             cursor: pointer;
         }
         
-        /* Progress Tracker */
-        .progress-container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .progress-item {
-            margin-bottom: 20px;
-        }
-        
-        .progress-bar {
-            height: 10px;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            margin-top: 5px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background-color: var(--primary);
-            border-radius: 5px;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        
         /* Responsive Styles */
         @media (max-width: 768px) {
             .nav-links {
@@ -567,18 +655,19 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">
+                <a href="#" class="logo" data-page="home">
                     <i class="fas fa-leaf"></i>
                     NutriLife
                 </a>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#benefits">Benefits</a></li>
-                    <li><a href="#food-groups">Food Groups</a></li>
-                    <li><a href="#recipes">Recipes</a></li>
-                    <li><a href="#tips">Tips</a></li>
-                    <li><a href="#meal-planner">Meal Planner</a></li>
-                    <li><a href="#calculator">BMI Calculator</a></li>
+                    <li><a class="nav-link active" data-page="home">Home</a></li>
+                    <li><a class="nav-link" data-page="benefits">Benefits</a></li>
+                    <li><a class="nav-link" data-page="food-groups">Food Groups</a></li>
+                    <li><a class="nav-link" data-page="recipes">Recipes</a></li>
+                    <li><a class="nav-link" data-page="meal-planner">Meal Planner</a></li>
+                    <li><a class="nav-link" data-page="tools">Tools</a></li>
+                    <li><a class="nav-link" data-page="about">About</a></li>
+                    <li><a class="nav-link" data-page="contact">Contact</a></li>
                 </ul>
                 <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
@@ -587,336 +676,623 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Eat Well, Live Well</h1>
-            <p>Discover the power of healthy eating and transform your life with nutritious, delicious food choices. Start your journey to better health today!</p>
-            <a href="#benefits" class="btn">Get Started</a>
-            <a href="#meal-planner" class="btn btn-secondary">Plan Your Meals</a>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits">
-        <div class="container">
-            <h2 class="section-title">Benefits of Healthy Eating</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3>Heart Health</h3>
-                    <p>Reduce your risk of heart disease by choosing foods low in saturated fat and cholesterol. A diet rich in fruits, vegetables, and whole grains can lower blood pressure and improve cholesterol levels.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Mental Clarity</h3>
-                    <p>Nutrient-rich foods support brain function and can improve focus and memory. Omega-3 fatty acids, antioxidants, and vitamins are essential for cognitive health and may reduce the risk of neurodegenerative diseases.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-weight"></i>
-                    </div>
-                    <h3>Weight Management</h3>
-                    <p>Maintain a healthy weight with balanced nutrition and portion control. High-fiber foods keep you fuller longer, while lean proteins help maintain muscle mass during weight loss.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Strong Immunity</h3>
-                    <p>Boost your immune system with vitamins and minerals from fruits and vegetables. Vitamin C, zinc, and antioxidants help your body fight off infections and recover more quickly from illness.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-energy"></i>
-                    </div>
-                    <h3>Increased Energy</h3>
-                    <p>Complex carbohydrates and balanced meals provide sustained energy throughout the day, reducing energy crashes and improving productivity.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-smile"></i>
-                    </div>
-                    <h3>Better Mood</h3>
-                    <p>Nutrients like omega-3s, vitamins, and minerals can positively impact brain chemistry, potentially reducing symptoms of depression and anxiety.</p>
-                </div>
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Eat Well, Live Well</h1>
+                <p>Discover the power of healthy eating and transform your life with nutritious, delicious food choices. Start your journey to better health today!</p>
+                <a class="btn" data-page="benefits">Get Started</a>
+                <a class="btn btn-secondary" data-page="meal-planner">Plan Your Meals</a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Food Groups Section -->
-    <section class="food-groups" id="food-groups">
-        <div class="container">
-            <h2 class="section-title">Essential Food Groups</h2>
-            <div class="food-cards">
-                <div class="food-card">
-                    <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="food-content">
-                        <h3>Fruits & Vegetables</h3>
-                        <p>Rich in vitamins, minerals, and fiber. Aim for at least 5 servings per day for optimal health. Different colors provide different nutrients, so eat a rainbow!</p>
-                        <ul>
-                            <li>Leafy greens (spinach, kale)</li>
-                            <li>Berries (blueberries, strawberries)</li>
-                            <li>Citrus fruits (oranges, lemons)</li>
-                            <li>Cruciferous vegetables (broccoli, cauliflower)</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="food-card">
-                    <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="food-content">
-                        <h3>Whole Grains</h3>
-                        <p>Provide sustained energy and are packed with fiber, B vitamins, and minerals. Choose whole grains over refined grains for maximum nutritional benefit.</p>
-                        <ul>
-                            <li>Oats and oatmeal</li>
-                            <li>Brown rice and quinoa</li>
-                            <li>Whole wheat bread and pasta</li>
-                            <li>Barley and bulgur</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="food-card">
-                    <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="food-content">
-                        <h3>Lean Proteins</h3>
-                        <p>Essential for muscle repair and growth. Include plant-based options like beans and lentils. Protein helps you feel full and supports a healthy metabolism.</p>
-                        <ul>
-                            <li>Chicken and turkey breast</li>
-                            <li>Fish (salmon, tuna)</li>
-                            <li>Legumes (beans, lentils)</li>
-                            <li>Tofu and tempeh</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="food-card">
-                    <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="food-content">
-                        <h3>Healthy Fats</h3>
-                        <p>Essential for brain health, hormone production, and absorbing fat-soluble vitamins. Focus on unsaturated fats and limit saturated and trans fats.</p>
-                        <ul>
-                            <li>Avocados</li>
-                            <li>Nuts and seeds</li>
-                            <li>Olive oil</li>
-                            <li>Fatty fish</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="food-card">
-                    <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1565699894163-c495cd147d0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="food-content">
-                        <h3>Dairy & Alternatives</h3>
-                        <p>Important sources of calcium, vitamin D, and protein. Choose low-fat options or fortified plant-based alternatives.</p>
-                        <ul>
-                            <li>Greek yogurt</li>
-                            <li>Milk and cheese</li>
-                            <li>Fortified plant milks</li>
-                            <li>Cottage cheese</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Nutrition Chart Section -->
-    <section id="nutrition-chart">
-        <div class="container">
-            <h2 class="section-title">Daily Nutrition Guide</h2>
-            <div class="chart-container">
-                <canvas id="nutritionChart"></canvas>
-            </div>
-        </div>
-    </section>
-
-    <!-- Recipes Section -->
-    <section id="recipes">
-        <div class="container">
-            <h2 class="section-title">Healthy Recipes</h2>
-            <div class="recipe-cards">
-                <div class="recipe-card">
-                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="recipe-content">
-                        <h3>Quinoa Power Bowl</h3>
-                        <p>A nutrient-packed bowl with quinoa, roasted vegetables, avocado, and a lemon-tahini dressing. Perfect for lunch or a light dinner.</p>
-                        <div class="recipe-meta">
-                            <span><i class="fas fa-clock"></i> 25 mins</span>
-                            <span><i class="fas fa-fire"></i> 420 cal</span>
+        <!-- Benefits Section -->
+        <section id="benefits">
+            <div class="container">
+                <h2 class="section-title">Benefits of Healthy Eating</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-heartbeat"></i>
                         </div>
-                        <button class="btn view-recipe" data-recipe="quinoa">View Recipe</button>
+                        <h3>Heart Health</h3>
+                        <p>Reduce your risk of heart disease by choosing foods low in saturated fat and cholesterol.</p>
                     </div>
-                </div>
-                <div class="recipe-card">
-                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="recipe-content">
-                        <h3>Mediterranean Salad</h3>
-                        <p>Fresh greens with cherry tomatoes, cucumber, olives, feta cheese, and a light vinaigrette. A refreshing and healthy side dish.</p>
-                        <div class="recipe-meta">
-                            <span><i class="fas fa-clock"></i> 15 mins</span>
-                            <span><i class="fas fa-fire"></i> 280 cal</span>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-brain"></i>
                         </div>
-                        <button class="btn view-recipe" data-recipe="mediterranean">View Recipe</button>
+                        <h3>Mental Clarity</h3>
+                        <p>Nutrient-rich foods support brain function and can improve focus and memory.</p>
                     </div>
-                </div>
-                <div class="recipe-card">
-                    <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
-                    <div class="recipe-content">
-                        <h3>Veggie Stir Fry</h3>
-                        <p>Colorful vegetables stir-fried with tofu in a light ginger-soy sauce, served with brown rice. Quick, easy, and packed with nutrients.</p>
-                        <div class="recipe-meta">
-                            <span><i class="fas fa-clock"></i> 20 mins</span>
-                            <span><i class="fas fa-fire"></i> 350 cal</span>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-weight"></i>
                         </div>
-                        <button class="btn view-recipe" data-recipe="stirfry">View Recipe</button>
+                        <h3>Weight Management</h3>
+                        <p>Maintain a healthy weight with balanced nutrition and portion control.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Strong Immunity</h3>
+                        <p>Boost your immune system with vitamins and minerals from fruits and vegetables.</p>
                     </div>
                 </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a class="btn" data-page="benefits">View All Benefits</a>
+                </div>
             </div>
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="#" class="btn btn-secondary">View All Recipes</a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Meal Planner Section -->
-    <section class="meal-planner" id="meal-planner">
-        <div class="container">
-            <h2 class="section-title">Weekly Meal Planner</h2>
-            <div class="planner-container">
-                <div class="planner-header">
-                    <h3>This Week's Plan</h3>
-                    <button class="btn" id="generate-plan">Generate New Plan</button>
+        <!-- Food Groups Preview -->
+        <section class="food-groups">
+            <div class="container">
+                <h2 class="section-title">Essential Food Groups</h2>
+                <div class="food-cards">
+                    <div class="food-card">
+                        <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="food-content">
+                            <h3>Fruits & Vegetables</h3>
+                            <p>Rich in vitamins, minerals, and fiber. Aim for at least 5 servings per day for optimal health.</p>
+                        </div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="food-content">
+                            <h3>Whole Grains</h3>
+                            <p>Provide sustained energy and are packed with fiber, B vitamins, and minerals.</p>
+                        </div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="food-content">
+                            <h3>Lean Proteins</h3>
+                            <p>Essential for muscle repair and growth. Include plant-based options like beans and lentils.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="planner-grid">
-                    <div class="day-card">
-                        <h4>Monday</h4>
-                        <div class="meal-option" data-meal="breakfast">Oatmeal with berries</div>
-                        <div class="meal-option" data-meal="lunch">Quinoa salad</div>
-                        <div class="meal-option" data-meal="dinner">Baked salmon</div>
-                    </div>
-                    <div class="day-card">
-                        <h4>Tuesday</h4>
-                        <div class="meal-option" data-meal="breakfast">Greek yogurt</div>
-                        <div class="meal-option" data-meal="lunch">Chicken wrap</div>
-                        <div class="meal-option" data-meal="dinner">Vegetable stir-fry</div>
-                    </div>
-                    <div class="day-card">
-                        <h4>Wednesday</h4>
-                        <div class="meal-option" data-meal="breakfast">Smoothie bowl</div>
-                        <div class="meal-option" data-meal="lunch">Lentil soup</div>
-                        <div class="meal-option" data-meal="dinner">Turkey meatballs</div>
-                    </div>
-                    <div class="day-card">
-                        <h4>Thursday</h4>
-                        <div class="meal-option" data-meal="breakfast">Avocado toast</div>
-                        <div class="meal-option" data-meal="lunch">Mediterranean bowl</div>
-                        <div class="meal-option" data-meal="dinner">Chicken curry</div>
-                    </div>
-                    <div class="day-card">
-                        <h4>Friday</h4>
-                        <div class="meal-option" data-meal="breakfast">Chia pudding</div>
-                        <div class="meal-option" data-meal="lunch">Tuna salad</div>
-                        <div class="meal-option" data-meal="dinner">Vegetable pizza</div>
-                    </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <a class="btn" data-page="food-groups">Explore All Food Groups</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- Tips Section -->
-    <section class="tips-section" id="tips">
-        <div class="container">
-            <h2 class="section-title">Healthy Eating Tips</h2>
-            <div class="tips-container">
-                <div class="tip-card">
-                    <h3><i class="fas fa-apple-alt"></i> Eat More Whole Foods</h3>
-                    <p>Focus on consuming foods in their most natural state. Whole fruits, vegetables, grains, and lean proteins provide more nutrients and fewer additives than processed foods.</p>
-                </div>
-                <div class="tip-card">
-                    <h3><i class="fas fa-tint"></i> Stay Hydrated</h3>
-                    <p>Water is essential for digestion, nutrient absorption, and overall health. Aim for 8 glasses per day, more if you're active. Herbal teas and infused water are great options.</p>
-                </div>
-                <div class="tip-card">
-                    <h3><i class="fas fa-utensils"></i> Practice Mindful Eating</h3>
-                    <p>Pay attention to what you're eating, savor each bite, and listen to your body's hunger and fullness cues. Avoid distractions like TV or phones during meals.</p>
-                </div>
-                <div class="tip-card">
-                    <h3><i class="fas fa-balance-scale"></i> Watch Portion Sizes</h3>
-                    <p>Even healthy foods can contribute to weight gain if eaten in excessive amounts. Use visual cues to estimate proper portions - a serving of protein should be the size of your palm.</p>
-                </div>
-                <div class="tip-card">
-                    <h3><i class="fas fa-shopping-basket"></i> Plan Your Meals</h3>
-                    <p>Meal planning helps you make healthier choices, reduces food waste, and saves time and money. Dedicate one day a week to planning and prepping meals.</p>
-                </div>
-                <div class="tip-card">
-                    <h3><i class="fas fa-cookie"></i> Limit Processed Foods</h3>
-                    <p>Processed foods are often high in sodium, sugar, and unhealthy fats. Opt for homemade alternatives when possible and read labels carefully.</p>
-                </div>
+    <!-- Benefits Page -->
+    <div id="benefits-page" class="page">
+        <section class="hero">
+            <div class="container">
+                <h1>Benefits of Healthy Eating</h1>
+                <p>Discover how nutritious food choices can transform your health and wellbeing.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Progress Tracker -->
-    <section id="progress-tracker">
-        <div class="container">
-            <h2 class="section-title">Healthy Habits Tracker</h2>
-            <div class="progress-container">
-                <div class="progress-item">
-                    <p>Water Intake (8 glasses/day)</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="water-progress"></div>
+        <section>
+            <div class="container">
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Heart Health</h3>
+                        <p>Reduce your risk of heart disease by choosing foods low in saturated fat and cholesterol. A diet rich in fruits, vegetables, and whole grains can lower blood pressure and improve cholesterol levels.</p>
                     </div>
-                    <button class="btn" onclick="updateProgress('water')">Add Glass</button>
-                </div>
-                <div class="progress-item">
-                    <p>Fruit & Vegetable Servings (5/day)</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="produce-progress"></div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Mental Clarity</h3>
+                        <p>Nutrient-rich foods support brain function and can improve focus and memory. Omega-3 fatty acids, antioxidants, and vitamins are essential for cognitive health and may reduce the risk of neurodegenerative diseases.</p>
                     </div>
-                    <button class="btn" onclick="updateProgress('produce')">Add Serving</button>
-                </div>
-                <div class="progress-item">
-                    <p>Physical Activity (30 mins/day)</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="activity-progress"></div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-weight"></i>
+                        </div>
+                        <h3>Weight Management</h3>
+                        <p>Maintain a healthy weight with balanced nutrition and portion control. High-fiber foods keep you fuller longer, while lean proteins help maintain muscle mass during weight loss.</p>
                     </div>
-                    <button class="btn" onclick="updateProgress('activity')">Add 10 mins</button>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Strong Immunity</h3>
+                        <p>Boost your immune system with vitamins and minerals from fruits and vegetables. Vitamin C, zinc, and antioxidants help your body fight off infections and recover more quickly from illness.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-energy"></i>
+                        </div>
+                        <h3>Increased Energy</h3>
+                        <p>Complex carbohydrates and balanced meals provide sustained energy throughout the day, reducing energy crashes and improving productivity.</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <h3>Better Mood</h3>
+                        <p>Nutrients like omega-3s, vitamins, and minerals can positively impact brain chemistry, potentially reducing symptoms of depression and anxiety.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- BMI Calculator -->
-    <section id="calculator">
-        <div class="container">
-            <h2 class="section-title">BMI Calculator</h2>
-            <div class="calculator">
-                <div class="form-group">
-                    <label for="height">Height (cm)</label>
-                    <input type="number" id="height" placeholder="Enter your height">
-                </div>
-                <div class="form-group">
-                    <label for="weight">Weight (kg)</label>
-                    <input type="number" id="weight" placeholder="Enter your weight">
-                </div>
-                <div class="form-group">
-                    <label for="age">Age</label>
-                    <input type="number" id="age" placeholder="Enter your age">
-                </div>
-                <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select id="gender">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-                <button class="btn" id="calculate-btn">Calculate BMI</button>
-                <div class="result" id="result"></div>
+    <!-- Food Groups Page -->
+    <div id="food-groups-page" class="page">
+        <section class="hero">
+            <div class="container">
+                <h1>Essential Food Groups</h1>
+                <p>Learn about the different food groups and how to incorporate them into a balanced diet.</p>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="food-groups">
+            <div class="container">
+                <div class="food-cards">
+                    <div class="food-card">
+                        <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="food-content">
+                            <h3>Fruits & Vegetables</h3>
+                            <p>Rich in vitamins, minerals, and fiber. Aim for at least 5 servings per day for optimal health. Different colors provide different nutrients, so eat a rainbow!</p>
+                            <ul>
+                                <li>Leafy greens (spinach, kale)</li>
+                                <li>Berries (blueberries, strawberries)</li>
+                                <li>Citrus fruits (oranges, lemons)</li>
+                                <li>Cruciferous vegetables (broccoli, cauliflower)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="food-content">
+                            <h3>Whole Grains</h3>
+                            <p>Provide sustained energy and are packed with fiber, B vitamins, and minerals. Choose whole grains over refined grains for maximum nutritional benefit.</p>
+                            <ul>
+                                <li>Oats and oatmeal</li>
+                                <li>Brown rice and quinoa</li>
+                                <li>Whole wheat bread and pasta</li>
+                                <li>Barley and bulgur</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="food-content">
+                            <h3>Lean Proteins</h3>
+                            <p>Essential for muscle repair and growth. Include plant-based options like beans and lentils. Protein helps you feel full and supports a healthy metabolism.</p>
+                            <ul>
+                                <li>Chicken and turkey breast</li>
+                                <li>Fish (salmon, tuna)</li>
+                                <li>Legumes (beans, lentils)</li>
+                                <li>Tofu and tempeh</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="food-content">
+                            <h3>Healthy Fats</h3>
+                            <p>Essential for brain health, hormone production, and absorbing fat-soluble vitamins. Focus on unsaturated fats and limit saturated and trans fats.</p>
+                            <ul>
+                                <li>Avocados</li>
+                                <li>Nuts and seeds</li>
+                                <li>Olive oil</li>
+                                <li>Fatty fish</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-img" style="background-image: url('https://images.unsplash.com/photo-1565699894163-c495cd147d0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="food-content">
+                            <h3>Dairy & Alternatives</h3>
+                            <p>Important sources of calcium, vitamin D, and protein. Choose low-fat options or fortified plant-based alternatives.</p>
+                            <ul>
+                                <li>Greek yogurt</li>
+                                <li>Milk and cheese</li>
+                                <li>Fortified plant milks</li>
+                                <li>Cottage cheese</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nutrition Chart Section -->
+        <section id="nutrition-chart">
+            <div class="container">
+                <h2 class="section-title">Daily Nutrition Guide</h2>
+                <div class="chart-container">
+                    <canvas id="nutritionChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Recipes Page -->
+    <div id="recipes-page" class="page">
+        <section class="hero">
+            <div class="container">
+                <h1>Healthy Recipes</h1>
+                <p>Discover delicious, nutritious recipes that are easy to make and good for you.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="recipe-cards">
+                    <div class="recipe-card">
+                        <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="recipe-content">
+                            <h3>Quinoa Power Bowl</h3>
+                            <p>A nutrient-packed bowl with quinoa, roasted vegetables, avocado, and a lemon-tahini dressing. Perfect for lunch or a light dinner.</p>
+                            <div class="recipe-meta">
+                                <span><i class="fas fa-clock"></i> 25 mins</span>
+                                <span><i class="fas fa-fire"></i> 420 cal</span>
+                            </div>
+                            <button class="btn view-recipe" data-recipe="quinoa">View Recipe</button>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="recipe-content">
+                            <h3>Mediterranean Salad</h3>
+                            <p>Fresh greens with cherry tomatoes, cucumber, olives, feta cheese, and a light vinaigrette. A refreshing and healthy side dish.</p>
+                            <div class="recipe-meta">
+                                <span><i class="fas fa-clock"></i> 15 mins</span>
+                                <span><i class="fas fa-fire"></i> 280 cal</span>
+                            </div>
+                            <button class="btn view-recipe" data-recipe="mediterranean">View Recipe</button>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="recipe-content">
+                            <h3>Veggie Stir Fry</h3>
+                            <p>Colorful vegetables stir-fried with tofu in a light ginger-soy sauce, served with brown rice. Quick, easy, and packed with nutrients.</p>
+                            <div class="recipe-meta">
+                                <span><i class="fas fa-clock"></i> 20 mins</span>
+                                <span><i class="fas fa-fire"></i> 350 cal</span>
+                            </div>
+                            <button class="btn view-recipe" data-recipe="stirfry">View Recipe</button>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="recipe-content">
+                            <h3>Avocado Toast</h3>
+                            <p>Whole grain toast topped with mashed avocado, cherry tomatoes, and a sprinkle of chili flakes. A quick and satisfying breakfast.</p>
+                            <div class="recipe-meta">
+                                <span><i class="fas fa-clock"></i> 10 mins</span>
+                                <span><i class="fas fa-fire"></i> 320 cal</span>
+                            </div>
+                            <button class="btn view-recipe" data-recipe="avocado">View Recipe</button>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1551782450-17144efb9c50?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="recipe-content">
+                            <h3>Black Bean Burgers</h3>
+                            <p>Hearty veggie burgers made with black beans, oats, and spices. Serve on whole wheat buns with your favorite toppings.</p>
+                            <div class="recipe-meta">
+                                <span><i class="fas fa-clock"></i> 30 mins</span>
+                                <span><i class="fas fa-fire"></i> 380 cal</span>
+                            </div>
+                            <button class="btn view-recipe" data-recipe="burger">View Recipe</button>
+                        </div>
+                    </div>
+                    <div class="recipe-card">
+                        <div class="recipe-img" style="background-image: url('https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                        <div class="recipe-content">
+                            <h3>Fruit Smoothie Bowl</h3>
+                            <p>A thick, creamy smoothie bowl topped with fresh fruit, nuts, and seeds. Packed with vitamins and perfect for breakfast.</p>
+                            <div class="recipe-meta">
+                                <span><i class="fas fa-clock"></i> 15 mins</span>
+                                <span><i class="fas fa-fire"></i> 290 cal</span>
+                            </div>
+                            <button class="btn view-recipe" data-recipe="smoothie">View Recipe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Meal Planner Page -->
+    <div id="meal-planner-page" class="page">
+        <section class="hero">
+            <div class="container">
+                <h1>Weekly Meal Planner</h1>
+                <p>Plan your healthy meals for the week with our easy-to-use meal planner.</p>
+            </div>
+        </section>
+
+        <section class="meal-planner">
+            <div class="container">
+                <div class="planner-container">
+                    <div class="planner-header">
+                        <h3>This Week's Plan</h3>
+                        <button class="btn" id="generate-plan">Generate New Plan</button>
+                    </div>
+                    <div class="planner-grid">
+                        <div class="day-card">
+                            <h4>Monday</h4>
+                            <div class="meal-option" data-meal="breakfast">Oatmeal with berries</div>
+                            <div class="meal-option" data-meal="lunch">Quinoa salad</div>
+                            <div class="meal-option" data-meal="dinner">Baked salmon</div>
+                        </div>
+                        <div class="day-card">
+                            <h4>Tuesday</h4>
+                            <div class="meal-option" data-meal="breakfast">Greek yogurt</div>
+                            <div class="meal-option" data-meal="lunch">Chicken wrap</div>
+                            <div class="meal-option" data-meal="dinner">Vegetable stir-fry</div>
+                        </div>
+                        <div class="day-card">
+                            <h4>Wednesday</h4>
+                            <div class="meal-option" data-meal="breakfast">Smoothie bowl</div>
+                            <div class="meal-option" data-meal="lunch">Lentil soup</div>
+                            <div class="meal-option" data-meal="dinner">Turkey meatballs</div>
+                        </div>
+                        <div class="day-card">
+                            <h4>Thursday</h4>
+                            <div class="meal-option" data-meal="breakfast">Avocado toast</div>
+                            <div class="meal-option" data-meal="lunch">Mediterranean bowl</div>
+                            <div class="meal-option" data-meal="dinner">Chicken curry</div>
+                        </div>
+                        <div class="day-card">
+                            <h4>Friday</h4>
+                            <div class="meal-option" data-meal="breakfast">Chia pudding</div>
+                            <div class="meal-option" data-meal="lunch">Tuna salad</div>
+                            <div class="meal-option" data-meal="dinner">Vegetable pizza</div>
+                        </div>
+                        <div class="day-card">
+                            <h4>Saturday</h4>
+                            <div class="meal-option" data-meal="breakfast">Whole grain pancakes</div>
+                            <div class="meal-option" data-meal="lunch">Bean burritos</div>
+                            <div class="meal-option" data-meal="dinner">Grilled chicken</div>
+                        </div>
+                        <div class="day-card">
+                            <h4>Sunday</h4>
+                            <div class="meal-option" data-meal="breakfast">Egg scramble</div>
+                            <div class="meal-option" data-meal="lunch">Leftovers</div>
+                            <div class="meal-option" data-meal="dinner">Roast vegetables</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="tips-section">
+            <div class="container">
+                <h2 class="section-title">Meal Planning Tips</h2>
+                <div class="tips-container">
+                    <div class="tip-card">
+                        <h3><i class="fas fa-shopping-basket"></i> Plan Before You Shop</h3>
+                        <p>Create your meal plan before grocery shopping to ensure you have all the ingredients you need and reduce food waste.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3><i class="fas fa-utensils"></i> Prep in Advance</h3>
+                        <p>Set aside time on the weekend to prep ingredients or make meals ahead for busy weekdays.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3><i class="fas fa-balance-scale"></i> Balance Your Plate</h3>
+                        <p>Ensure each meal includes a source of protein, complex carbs, healthy fats, and plenty of vegetables.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3><i class="fas fa-repeat"></i> Embrace Leftovers</h3>
+                        <p>Cook larger portions to have leftovers for lunch or another dinner, saving time and effort.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Tools Page -->
+    <div id="tools-page" class="page">
+        <section class="hero">
+            <div class="container">
+                <h1>Health Tools</h1>
+                <p>Use our helpful tools to track your progress and make informed health decisions.</p>
+            </div>
+        </section>
+
+        <!-- BMI Calculator -->
+        <section>
+            <div class="container">
+                <h2 class="section-title">BMI Calculator</h2>
+                <div class="calculator">
+                    <div class="form-group">
+                        <label for="height">Height (cm)</label>
+                        <input type="number" id="height" placeholder="Enter your height">
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" id="weight" placeholder="Enter your weight">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" placeholder="Enter your age">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <button class="btn" id="calculate-btn">Calculate BMI</button>
+                    <div class="result" id="result"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Tracker -->
+        <section id="progress-tracker">
+            <div class="container">
+                <h2 class="section-title">Healthy Habits Tracker</h2>
+                <div class="progress-container">
+                    <div class="progress-item">
+                        <p>Water Intake (8 glasses/day)</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="water-progress"></div>
+                        </div>
+                        <button class="btn" onclick="updateProgress('water')">Add Glass</button>
+                    </div>
+                    <div class="progress-item">
+                        <p>Fruit & Vegetable Servings (5/day)</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="produce-progress"></div>
+                        </div>
+                        <button class="btn" onclick="updateProgress('produce')">Add Serving</button>
+                    </div>
+                    <div class="progress-item">
+                        <p>Physical Activity (30 mins/day)</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="activity-progress"></div>
+                        </div>
+                        <button class="btn" onclick="updateProgress('activity')">Add 10 mins</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about-page" class="page">
+        <section class="hero">
+            <div class="container">
+                <h1>About NutriLife</h1>
+                <p>Learn more about our mission to promote healthy eating and balanced nutrition.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="about-content">
+                    <h2>Our Mission</h2>
+                    <p>At NutriLife, we believe that healthy eating should be simple, enjoyable, and accessible to everyone. Our mission is to provide evidence-based nutrition information, practical tips, and delicious recipes to help people make positive changes to their diet and lifestyle.</p>
+                    
+                    <h2>Our Story</h2>
+                    <p>Founded in 2018 by a team of nutritionists, dietitians, and food enthusiasts, NutriLife began as a small blog sharing healthy recipes and nutrition tips. Over time, we've grown into a comprehensive resource for anyone looking to improve their health through better eating habits.</p>
+                    
+                    <h2>Our Approach</h2>
+                    <p>We focus on balanced nutrition rather than restrictive diets. Our philosophy is that all foods can fit into a healthy lifestyle when consumed in moderation. We emphasize whole foods, variety, and mindful eating practices.</p>
+                </div>
+                
+                <h2 class="section-title">Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-img">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h3>Dr. Sarah Johnson</h3>
+                        <p>Registered Dietitian</p>
+                        <p>Specializes in plant-based nutrition and sustainable eating practices.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>Michael Chen</h3>
+                        <p>Chef & Nutritionist</p>
+                        <p>Creates delicious, healthy recipes that are easy to prepare at home.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3>Dr. Emily Rodriguez</h3>
+                        <p>Sports Nutritionist</p>
+                        <p>Focuses on nutrition for athletic performance and active lifestyles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact-page" class="page">
+        <section class="hero">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p>Get in touch with our team for questions, suggestions, or collaborations.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h2>Get In Touch</h2>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Address</h3>
+                                <p>123 Health Street, Wellness City, WC 12345</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h3>Phone</h3>
+                                <p>(123) 456-7890</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3>Email</h3>
+                                <p>info@nutrilife.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3>Office Hours</h3>
+                                <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h2>Send Us a Message</h2>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" placeholder="Enter the subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" rows="5" placeholder="Enter your message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -935,11 +1311,11 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#benefits">Benefits</a></li>
-                        <li><a href="#food-groups">Food Groups</a></li>
-                        <li><a href="#recipes">Recipes</a></li>
-                        <li><a href="#tips">Tips</a></li>
+                        <li><a class="footer-link" data-page="home">Home</a></li>
+                        <li><a class="footer-link" data-page="benefits">Benefits</a></li>
+                        <li><a class="footer-link" data-page="food-groups">Food Groups</a></li>
+                        <li><a class="footer-link" data-page="recipes">Recipes</a></li>
+                        <li><a class="footer-link" data-page="meal-planner">Meal Planner</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -981,10 +1357,51 @@
     </div>
 
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set home page as active on load
+            showPage('home');
+            
+            // Navigation links
+            document.querySelectorAll('.nav-link, .footer-link, .logo, .btn[data-page]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-page');
+                    if (page) {
+                        showPage(page);
+                        
+                        // Close mobile menu if open
+                        document.querySelector('.nav-links').classList.remove('active');
+                    }
+                });
+            });
+            
+            // Mobile menu toggle
+            document.querySelector('.mobile-menu').addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.toggle('active');
+            });
         });
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId === 'home' ? 'home' : `${pageId}-page`).classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
 
         // BMI Calculator
         document.getElementById('calculate-btn').addEventListener('click', function() {
@@ -1034,27 +1451,6 @@
             `;
             result.className = `result ${colorClass}`;
             result.style.display = 'block';
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    document.querySelector('.nav-links').classList.remove('active');
-                }
-            });
         });
 
         // Progress Tracker
@@ -1156,6 +1552,71 @@
                     "Serve over brown rice and garnish with green onions."
                 ],
                 nutrition: "Calories: 350 | Protein: 15g | Carbs: 45g | Fat: 12g"
+            },
+            avocado: {
+                title: "Avocado Toast",
+                ingredients: [
+                    "2 slices whole grain bread",
+                    "1 ripe avocado",
+                    "1/2 cup cherry tomatoes, halved",
+                    "1 tbsp lemon juice",
+                    "1/4 tsp red pepper flakes",
+                    "Salt and pepper to taste",
+                    "Microgreens for garnish (optional)"
+                ],
+                instructions: [
+                    "Toast the bread until golden and crisp.",
+                    "Cut the avocado in half, remove the pit, and scoop the flesh into a bowl.",
+                    "Mash the avocado with a fork, then stir in lemon juice, salt, and pepper.",
+                    "Spread the mashed avocado evenly on the toast.",
+                    "Top with cherry tomatoes, red pepper flakes, and microgreens if using.",
+                    "Serve immediately."
+                ],
+                nutrition: "Calories: 320 | Protein: 8g | Carbs: 35g | Fat: 18g"
+            },
+            burger: {
+                title: "Black Bean Burgers",
+                ingredients: [
+                    "1 can (15 oz) black beans, rinsed and drained",
+                    "1/2 cup rolled oats",
+                    "1/4 cup finely chopped onion",
+                    "1/4 cup finely chopped bell pepper",
+                    "1 clove garlic, minced",
+                    "1 tsp cumin",
+                    "1/2 tsp chili powder",
+                    "1 tbsp olive oil",
+                    "4 whole wheat burger buns",
+                    "Lettuce, tomato, and onion for serving"
+                ],
+                instructions: [
+                    "In a large bowl, mash black beans with a fork until thick and pasty.",
+                    "Stir in oats, onion, bell pepper, garlic, cumin, and chili powder.",
+                    "Divide mixture into 4 equal portions and shape into patties.",
+                    "Heat olive oil in a skillet over medium heat.",
+                    "Cook patties for about 5 minutes on each side, until browned and heated through.",
+                    "Serve on buns with lettuce, tomato, and onion."
+                ],
+                nutrition: "Calories: 380 | Protein: 15g | Carbs: 55g | Fat: 12g"
+            },
+            smoothie: {
+                title: "Fruit Smoothie Bowl",
+                ingredients: [
+                    "1 frozen banana",
+                    "1/2 cup frozen mixed berries",
+                    "1/4 cup plain Greek yogurt",
+                    "2-3 tbsp milk or plant-based milk",
+                    "1 tbsp chia seeds",
+                    "1/4 cup granola",
+                    "Fresh fruit for topping (sliced banana, berries, kiwi)"
+                ],
+                instructions: [
+                    "In a blender, combine frozen banana, frozen berries, Greek yogurt, and milk.",
+                    "Blend until smooth and thick, adding more milk if needed to reach desired consistency.",
+                    "Pour the smoothie into a bowl.",
+                    "Top with chia seeds, granola, and fresh fruit.",
+                    "Serve immediately."
+                ],
+                nutrition: "Calories: 290 | Protein: 12g | Carbs: 52g | Fat: 6g"
             }
         };
 
@@ -1200,7 +1661,8 @@
                 "Smoothie bowl",
                 "Avocado toast",
                 "Chia pudding",
-                "Scrambled eggs with vegetables"
+                "Scrambled eggs with vegetables",
+                "Whole grain pancakes"
             ];
             
             const lunchOptions = [
@@ -1209,7 +1671,8 @@
                 "Lentil soup",
                 "Mediterranean bowl",
                 "Tuna salad",
-                "Vegetable stir-fry"
+                "Vegetable stir-fry",
+                "Bean burritos"
             ];
             
             const dinnerOptions = [
@@ -1218,7 +1681,8 @@
                 "Turkey meatballs with zucchini noodles",
                 "Chicken curry with brown rice",
                 "Vegetable pizza on whole wheat crust",
-                "Black bean burgers with sweet potato fries"
+                "Black bean burgers with sweet potato fries",
+                "Grilled chicken with quinoa"
             ];
             
             document.querySelectorAll('.meal-option').forEach(option => {
@@ -1236,6 +1700,13 @@
                 const randomIndex = Math.floor(Math.random() * optionsArray.length);
                 option.textContent = optionsArray[randomIndex];
             });
+        });
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
         });
 
         // Nutrition Chart
